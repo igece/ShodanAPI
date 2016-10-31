@@ -31,24 +31,31 @@ namespace Shodan.API
         requestParamStr += String.Format("&{0}={1}", requestParam.Key, requestParam.Value);
 
       HttpWebRequest request = WebRequest.Create(String.Format("{0}/{1}?key={2}{3}", ShodanApi.URL, MethodUrl, ShodanApi.Key, requestParamStr)) as HttpWebRequest;
+      DataContractJsonSerializer jsonSerializer;
+      object objResponse;
 
-      using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+      try
       {
-        DataContractJsonSerializer jsonSerializer;
-        object objResponse;
-
-        if (response.StatusCode != HttpStatusCode.OK)
+        using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
         {
-          jsonSerializer = new DataContractJsonSerializer(typeof(JsonTypes.Error));
+          jsonSerializer = new DataContractJsonSerializer(typeof(T));
           objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
 
-          throw new Exception(String.Format("Server error: {0}.", (objResponse as JsonTypes.Error).Message));
+          return (objResponse as T);
         }
+      }
 
-        jsonSerializer = new DataContractJsonSerializer(typeof(T));
-        objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
+      catch (WebException ex)
+      {
+        jsonSerializer = new DataContractJsonSerializer(typeof(JsonTypes.Error));
+        objResponse = jsonSerializer.ReadObject(ex.Response.GetResponseStream());
 
-        return (objResponse as T);
+        throw new Exception((objResponse as JsonTypes.Error).Message);
+      }
+
+      catch (Exception)
+      {
+        throw;
       }
     }
   }
