@@ -8,13 +8,18 @@ using Shodan.API.JsonTypes;
 
 namespace Shodan.API
 {
-  public class HostSearch : ShodanMethod<HostSearchJson>, IPagedOutput
+  public class HostSearch : ShodanMethod<HostSearchJson>, IFilterable, IPageable
   {
     public string Query { get; set; }
-    public uint MaxPages { get; set; }
 
-    public bool? HasScreenShot { get; set; }
+    public bool? HasScreenshot { get; set; }
+
     public ushort? Port { get; set; }
+
+    public DateTime? After { get; set; }
+
+
+    public uint MaxPages { get; set; }
 
 
     public HostSearch()
@@ -23,7 +28,7 @@ namespace Shodan.API
       Query = String.Empty;
       MaxPages = 1;
 
-      HasScreenShot = null;
+      HasScreenshot = null;
       Port = null;      
     }
 
@@ -37,11 +42,7 @@ namespace Shodan.API
 
       QueryParams.Add("query", Query);
 
-      if (HasScreenShot.HasValue)
-        QueryParams.Add("has_screenshot", HasScreenShot.Value.ToString());
-
-      if (Port.HasValue)
-        QueryParams.Add("port", Port.Value.ToString());
+      InterfaceUtils.AddFilter(this, QueryParams);
 
       if (MaxPages == 1)
       {

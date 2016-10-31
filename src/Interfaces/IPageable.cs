@@ -1,6 +1,6 @@
 ﻿namespace Shodan.API.Interfaces
 {
-  interface IPagedOutput
+  interface IPageable
   {
     uint MaxPages { get; set; }
   }

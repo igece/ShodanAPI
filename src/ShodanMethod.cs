@@ -9,6 +9,7 @@ namespace Shodan.API
   public class ShodanMethod<T> where T : class
   {
     protected string MethodUrl { get; private set; }
+
     protected Dictionary<string, string> QueryParams { get; private set; }
 
 
@@ -33,14 +34,19 @@ namespace Shodan.API
 
       using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
       {
+        DataContractJsonSerializer jsonSerializer;
+        object objResponse;
+
         if (response.StatusCode != HttpStatusCode.OK)
         {
-          // TO-DO: Deserialize JSON error description.
-          throw new Exception(String.Format("Server error (HTTP {0}: {1}).", response.StatusCode, response.StatusDescription));
+          jsonSerializer = new DataContractJsonSerializer(typeof(JsonTypes.Error));
+          objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
+
+          throw new Exception(String.Format("Server error: {0}.", (objResponse as JsonTypes.Error).Message));
         }
 
-        DataContractJsonSerializer jsonSerializer = new DataContractJsonSerializer(typeof(T));
-        object objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
+        jsonSerializer = new DataContractJsonSerializer(typeof(T));
+        objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
 
         return (objResponse as T);
       }
