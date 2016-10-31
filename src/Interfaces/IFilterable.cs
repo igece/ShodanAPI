@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Text;
 
 
 namespace Shodan.API.Interfaces
@@ -16,16 +16,20 @@ namespace Shodan.API.Interfaces
 
   internal partial class InterfaceUtils
   {
-    public static void AddFilter(IFilterable method, Dictionary<string, string> queryParams)
+    public static string AddFiltersToQuery(string query, IFilterable filters)
     {
-      if (method.HasScreenshot.HasValue)
-        queryParams.Add("has_screenshot", method.HasScreenshot.Value.ToString());
+      StringBuilder filteredQuery = new StringBuilder(query);
 
-      if (method.Port.HasValue)
-        queryParams.Add("port", method.Port.Value.ToString());
+      if (filters.HasScreenshot.HasValue)
+        filteredQuery.AppendFormat(" has_screenshot:{0}", filters.HasScreenshot.Value.ToString());
 
-      if (method.After.HasValue)
-        queryParams.Add("after", method.After.Value.ToString("dd/MM/yyyy"));
+      if (filters.Port.HasValue)
+        filteredQuery.AppendFormat(" port:{0}", filters.Port.Value.ToString());
+
+      if (filters.After.HasValue)
+        filteredQuery.AppendFormat(" after:\"{0}\"", filters.After.Value.ToString("dd/MM/yyyy"));
+
+      return filteredQuery.ToString();
     }
   }
 }

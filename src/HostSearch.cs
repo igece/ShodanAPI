@@ -35,15 +35,12 @@ namespace Shodan.API
 
     public override HostSearchJson Execute()
     {
-      QueryParams.Clear();
-
       if (Query == null)
         throw new Exception("Query string can't be null.");
 
-      QueryParams.Add("query", Query);
-
-      InterfaceUtils.AddFilter(this, QueryParams);
-
+      RequestParams.Clear();
+      RequestParams.Add("query", InterfaceUtils.AddFiltersToQuery(Query, this));
+    
       if (MaxPages == 1)
       {
         HostSearchJson result = base.Execute();
@@ -64,7 +61,7 @@ namespace Shodan.API
            
       do
       {
-        QueryParams["page"] = currentPage.ToString();
+        RequestParams["page"] = currentPage.ToString();
 
         try
         {

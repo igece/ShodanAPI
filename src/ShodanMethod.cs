@@ -10,13 +10,13 @@ namespace Shodan.API
   {
     protected string MethodUrl { get; private set; }
 
-    protected Dictionary<string, string> QueryParams { get; private set; }
+    protected Dictionary<string, string> RequestParams { get; private set; }
 
 
     public ShodanMethod(string methodUrl)
     {
       MethodUrl = methodUrl;
-      QueryParams = new Dictionary<string, string>();
+      RequestParams = new Dictionary<string, string>();
     }
 
 
@@ -25,12 +25,12 @@ namespace Shodan.API
       if (String.IsNullOrEmpty(ShodanApi.Key))
         throw new Exception("Shodan API key not specified.");
 
-      string queryParamStr = String.Empty;
+      string requestParamStr = String.Empty;
 
-      foreach (KeyValuePair<string, string> queryParam in QueryParams)
-        queryParamStr += String.Format("&{0}={1}", queryParam.Key, queryParam.Value);
+      foreach (KeyValuePair<string, string> requestParam in RequestParams)
+        requestParamStr += String.Format("&{0}={1}", requestParam.Key, requestParam.Value);
 
-      HttpWebRequest request = WebRequest.Create(String.Format("{0}/{1}?key={2}{3}", ShodanApi.URL, MethodUrl, ShodanApi.Key, queryParamStr)) as HttpWebRequest;
+      HttpWebRequest request = WebRequest.Create(String.Format("{0}/{1}?key={2}{3}", ShodanApi.URL, MethodUrl, ShodanApi.Key, requestParamStr)) as HttpWebRequest;
 
       using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
       {
