@@ -8,7 +8,7 @@ using Shodan.API.Types;
 
 namespace Shodan.API
 {
-  internal class Utils
+  public class Utils
   {
     public static HostShare[] GetHostShares(HostJson host)
     {
@@ -43,7 +43,7 @@ namespace Shodan.API
           }
         }
       }
-        
+
       return shares.ToArray();
     }
   }

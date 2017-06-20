@@ -11,7 +11,7 @@ namespace Shodan.API.JsonTypes
     [DataMember(Name = "os")]
     public string OS { get; set; }
 
-    [DataMember(Name ="server")]
+    [DataMember(Name = "server")]
     public string Server { get; set; }
 
     [DataMember(Name = "timestamp")]
@@ -46,7 +46,5 @@ namespace Shodan.API.JsonTypes
 
     [DataMember(Name = "ip_str")]
     public string IPString { get; set; }
-
-    public HostShare[] Shares { get; set; }
   }
 }

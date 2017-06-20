@@ -18,7 +18,6 @@ namespace Shodan.API
 
     public DateTime? After { get; set; }
 
-
     public uint MaxPages { get; set; }
 
 
@@ -29,7 +28,7 @@ namespace Shodan.API
       MaxPages = 1;
 
       HasScreenshot = null;
-      Port = null;      
+      Port = null;
     }
 
 
@@ -40,16 +39,9 @@ namespace Shodan.API
 
       RequestParams.Clear();
       RequestParams.Add("query", InterfaceUtils.AddFiltersToQuery(Query, this));
-    
+
       if (MaxPages == 1)
-      {
-        HostSearchJson result = base.Execute();
-
-        foreach (HostJson host in result.Matches)
-          host.Shares = Utils.GetHostShares(host);
-
-        return result;
-      }
+        return base.Execute();
 
       uint currentPage = 1;
       uint realMaxPages = MaxPages;
@@ -58,7 +50,7 @@ namespace Shodan.API
       List<HostJson> allHosts = new List<HostJson>();
 
       int retries = 0;
-           
+
       do
       {
         RequestParams["page"] = currentPage.ToString();
@@ -98,9 +90,6 @@ namespace Shodan.API
       } while (currentPage++ < realMaxPages);
 
       allResults.Matches = allHosts.ToArray();
-
-      foreach (HostJson host in allResults.Matches)
-        host.Shares = Utils.GetHostShares(host);
 
       return allResults;
     }
