@@ -63,7 +63,7 @@ namespace Shodan.API
           if (currentPage == 1)
           {
             allResults.Total = pageResults.Total;
-            uint totalPages = Convert.ToUInt32(Math.Ceiling(pageResults.Total / Convert.ToDouble(ShodanApi.RESULTS_PER_PAGE)));
+            uint totalPages = Convert.ToUInt32(Math.Ceiling(pageResults.Total / Convert.ToDouble(ShodanApi.ResultsPerPage)));
 
             if (realMaxPages > totalPages)
               realMaxPages = totalPages;

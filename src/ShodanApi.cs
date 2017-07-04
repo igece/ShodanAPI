@@ -5,6 +5,6 @@
     public static string Key { get; set; }
     public const string URL = "https://api.shodan.io";
 
-    public const uint RESULTS_PER_PAGE = 100;
+    public const uint ResultsPerPage = 100;
   }
 }
