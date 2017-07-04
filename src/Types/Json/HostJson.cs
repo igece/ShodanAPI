@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Serialization;
 
 using Shodan.API.Types;
+using Shodan.API.Types.Json;
 
 
 namespace Shodan.API.JsonTypes
@@ -46,5 +47,8 @@ namespace Shodan.API.JsonTypes
 
     [DataMember(Name = "ip_str")]
     public string IPString { get; set; }
+
+    [DataMember(Name = "smb")]
+    public SmbJson SMB { get; set; }
   }
 }

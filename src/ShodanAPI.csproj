@@ -58,6 +58,9 @@
     <Compile Include="ShodanMethod.cs" />
     <Compile Include="Types\HostShare.cs" />
     <Compile Include="Utils.cs" />
+    <Compile Include="Types\Json\SmbJson.cs" />
+    <Compile Include="Types\Json\SmbShareJson.cs" />
+    <Compile Include="Types\Json\SmbFileJson.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\LICENSE" />
