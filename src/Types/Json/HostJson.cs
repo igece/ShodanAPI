@@ -1,6 +1,5 @@
 ﻿using System.Runtime.Serialization;
 
-using Shodan.API.Types;
 using Shodan.API.Types.Json;
 
 
@@ -31,8 +30,8 @@ namespace Shodan.API.JsonTypes
     public LocationJson Location { get; set; }
 
     [DataMember(Name = "ip")]
-    public ulong IP { get; set; }
-
+    public long IP { get; set; }
+    
     [DataMember(Name = "domains")]
     public string[] Domains { get; set; }
 
@@ -43,7 +42,7 @@ namespace Shodan.API.JsonTypes
     public string Data { get; set; }
 
     [DataMember(Name = "port")]
-    public ushort Port { get; set; }
+    public int Port { get; set; }
 
     [DataMember(Name = "ip_str")]
     public string IPString { get; set; }
