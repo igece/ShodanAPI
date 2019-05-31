@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Runtime.Serialization.Json;
-
+using Shodan.API.Exceptions;
 
 namespace Shodan.API
 {
@@ -22,8 +22,8 @@ namespace Shodan.API
 
     public virtual T Execute()
     {
-      if (String.IsNullOrEmpty(ShodanApi.Key))
-        throw new Exception("Shodan API key not specified.");
+      if (string.IsNullOrEmpty(ShodanApi.Key))
+        throw new ShodanException("Shodan API key not specified.");
 
       string requestParamStr = String.Empty;
 
@@ -50,7 +50,7 @@ namespace Shodan.API
         jsonSerializer = new DataContractJsonSerializer(typeof(JsonTypes.Error));
         objResponse = jsonSerializer.ReadObject(ex.Response.GetResponseStream());
 
-        throw new Exception((objResponse as JsonTypes.Error).Message);
+        throw new ShodanException((objResponse as JsonTypes.Error).Message);
       }
 
       catch (Exception)

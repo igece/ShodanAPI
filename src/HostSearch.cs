@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-
+using Shodan.API.Exceptions;
 using Shodan.API.Interfaces;
 using Shodan.API.JsonTypes;
 
@@ -35,7 +35,7 @@ namespace Shodan.API
     public override HostSearchJson Execute()
     {
       if (Query == null)
-        throw new Exception("Query string can't be null.");
+        throw new ShodanException("Query string can't be null.");
 
       RequestParams.Clear();
       RequestParams.Add("query", InterfaceUtils.AddFiltersToQuery(Query, this));
