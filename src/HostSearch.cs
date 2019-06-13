@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
+
 using Shodan.API.Exceptions;
 using Shodan.API.Interfaces;
 using Shodan.API.JsonTypes;
@@ -20,13 +21,15 @@ namespace Shodan.API
 
     public uint MaxPages { get; set; }
 
+    public bool? Minify { get; set; }
+
 
     public HostSearch()
     : base("shodan/host/search")
     {
-      Query = String.Empty;
+      Query = string.Empty;
       MaxPages = 1;
-
+      Minify = null;
       HasScreenshot = null;
       Port = null;
     }
@@ -39,6 +42,9 @@ namespace Shodan.API
 
       RequestParams.Clear();
       RequestParams.Add("query", InterfaceUtils.AddFiltersToQuery(Query, this));
+
+      if (Minify.HasValue)
+        RequestParams.Add("minify", Minify.Value.ToString());
 
       if (MaxPages == 1)
         return base.Execute();
