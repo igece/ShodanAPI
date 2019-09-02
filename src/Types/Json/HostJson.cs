@@ -47,6 +47,9 @@ namespace Shodan.API.JsonTypes
     [DataMember(Name = "ip_str")]
     public string IPString { get; set; }
 
+    [DataMember(Name = "http")]
+    public HttpJson HTTP { get; set; }
+
     [DataMember(Name = "smb")]
     public SmbJson SMB { get; set; }
   }

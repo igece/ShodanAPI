@@ -51,8 +51,10 @@
     <Compile Include="Interfaces\IPageable.cs" />
     <Compile Include="Types\Json\ApiInfoJson.cs" />
     <Compile Include="Types\Json\Error.cs" />
+    <Compile Include="Types\Json\FaviconJson.cs" />
     <Compile Include="Types\Json\HostJson.cs" />
     <Compile Include="Types\Json\HostSearchJson.cs" />
+    <Compile Include="Types\Json\HttpJson.cs" />
     <Compile Include="Types\Json\LocationJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShodanApi.cs" />
