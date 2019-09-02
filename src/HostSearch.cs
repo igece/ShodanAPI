@@ -44,7 +44,7 @@ namespace Shodan.API
       RequestParams.Add("query", InterfaceUtils.AddFiltersToQuery(Query, this));
 
       if (Minify.HasValue)
-        RequestParams.Add("minify", Minify.Value.ToString());
+        RequestParams.Add("minify", Minify.Value.ToString().ToLowerInvariant());
 
       if (MaxPages == 1)
         return base.Execute();
