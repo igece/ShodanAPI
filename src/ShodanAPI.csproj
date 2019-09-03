@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ApiInfo.cs" />
     <Compile Include="Exceptions\ShodanException.cs" />
+    <Compile Include="HostInfo.cs" />
     <Compile Include="HostSearch.cs" />
     <Compile Include="Interfaces\IFilterable.cs" />
     <Compile Include="Interfaces\IPageable.cs" />
