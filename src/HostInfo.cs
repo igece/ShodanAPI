@@ -1,10 +1,10 @@
 ﻿using Shodan.API.Exceptions;
-using Shodan.API.JsonTypes;
+using Shodan.API.Types.Json;
 
 
 namespace Shodan.API
 {
-  public class HostInfo : ShodanMethod<HostJson>
+  public class HostInfo : ShodanMethod<HostInfoJson>
   {
     public string IP { get; set; }
 
@@ -19,7 +19,7 @@ namespace Shodan.API
     }
 
 
-    public override HostJson Execute()
+    public override HostInfoJson Execute()
     {
       if (string.IsNullOrEmpty(IP))
         throw new ShodanException("No IP specified.");
