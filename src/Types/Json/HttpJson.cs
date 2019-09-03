@@ -12,6 +12,9 @@ namespace Shodan.API.Types.Json
     [DataMember(Name = "html")]
     public string HTML { get; set; }
 
+    [DataMember(Name = "html_hash")]
+    public long HTMLHash { get; set; }
+
     [DataMember(Name = "server")]
     public string Server { get; set; }
 
