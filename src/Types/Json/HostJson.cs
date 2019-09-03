@@ -30,7 +30,7 @@ namespace Shodan.API.JsonTypes
     public LocationJson Location { get; set; }
 
     [DataMember(Name = "ip")]
-    public long IP { get; set; }
+    public int IP { get; set; }
     
     [DataMember(Name = "domains")]
     public string[] Domains { get; set; }
@@ -46,6 +46,21 @@ namespace Shodan.API.JsonTypes
 
     [DataMember(Name = "ip_str")]
     public string IPString { get; set; }
+
+    [DataMember(Name = "product")]
+    public string Product { get; set; }
+
+    [DataMember(Name = "version")]
+    public string Version { get; set; }
+
+    [DataMember(Name = "hash")]
+    public long Hash { get; set; }
+
+    [DataMember(Name = "transport")]
+    public string Transport { get; set; }
+
+    [DataMember(Name = "devicetype")]
+    public string DeviceType { get; set; }
 
     [DataMember(Name = "http")]
     public HttpJson HTTP { get; set; }
