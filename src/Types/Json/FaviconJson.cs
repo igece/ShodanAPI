@@ -10,7 +10,7 @@ namespace Shodan.API.Types.Json
     public string Data { get; set; }
 
     [DataMember(Name = "hash")]
-    public int Hash { get; set; }
+    public long Hash { get; set; }
 
     [DataMember(Name = "location")]
     public string Location { get; set; }
