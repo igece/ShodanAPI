@@ -30,7 +30,7 @@ namespace Shodan.API.JsonTypes
     public LocationJson Location { get; set; }
 
     [DataMember(Name = "ip")]
-    public int IP { get; set; }
+    public uint IP { get; set; }
     
     [DataMember(Name = "domains")]
     public string[] Domains { get; set; }
