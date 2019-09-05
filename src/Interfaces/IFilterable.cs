@@ -21,7 +21,7 @@ namespace Shodan.API.Interfaces
       StringBuilder filteredQuery = new StringBuilder(query);
 
       if (filters.HasScreenshot.HasValue)
-        filteredQuery.AppendFormat(" has_screenshot:{0}", filters.HasScreenshot.Value.ToString());
+        filteredQuery.AppendFormat(" has_screenshot:{0}", filters.HasScreenshot.Value.ToString().ToLowerInvariant());
 
       if (filters.Port.HasValue)
         filteredQuery.AppendFormat(" port:{0}", filters.Port.Value.ToString());
