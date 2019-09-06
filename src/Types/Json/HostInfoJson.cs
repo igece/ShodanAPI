@@ -26,6 +26,12 @@ namespace Shodan.API.Types.Json
     [DataMember(Name = "country_name")]
     public string CountryName { get; set; }
 
+    [DataMember(Name = "latitude")]
+    public double Latitude { get; set; }
+
+    [DataMember(Name = "longitude")]
+    public double Longitude { get; set; }
+
     [DataMember(Name = "ip")]
     public uint IP { get; set; }
 
