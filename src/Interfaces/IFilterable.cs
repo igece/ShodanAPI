@@ -27,7 +27,7 @@ namespace Shodan.API.Interfaces
         filteredQuery.AppendFormat(" port:{0}", filters.Port.Value.ToString());
 
       if (filters.After.HasValue)
-        filteredQuery.AppendFormat(" &#61;&#66;&#74;&#65;&#72;:\"{0}\"", filters.After.Value.ToString("dd/MM/yyyy"));
+        filteredQuery.AppendFormat(" after:\"{0}\"", filters.After.Value.ToString("dd/MM/yyyy"));
 
       return filteredQuery.ToString();
     }
