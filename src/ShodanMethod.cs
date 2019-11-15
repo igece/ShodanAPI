@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 
 using Shodan.API.Exceptions;
@@ -40,7 +41,11 @@ namespace Shodan.API
       {
         using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
         {
-          jsonSerializer = new DataContractJsonSerializer(typeof(T));
+          jsonSerializer = new DataContractJsonSerializer(typeof(T), new DataContractJsonSerializerSettings
+          {
+            DateTimeFormat = new DateTimeFormat("yyyy-MM-dd'T'HH:mm:ss.ffffff")
+          });
+
           objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
 
           return (objResponse as T);

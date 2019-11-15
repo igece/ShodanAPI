@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using System;
+using System.Runtime.Serialization;
 
 using Shodan.API.Types.Json;
 
@@ -15,7 +16,7 @@ namespace Shodan.API.JsonTypes
     public string Server { get; set; }
 
     [DataMember(Name = "timestamp")]
-    public string TimeStamp { get; set; }
+    public DateTime? TimeStamp { get; set; }
 
     [DataMember(Name = "isp")]
     public string ISP { get; set; }
