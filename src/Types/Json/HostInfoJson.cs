@@ -1,7 +1,5 @@
 ﻿using System.Runtime.Serialization;
 
-using Shodan.API.JsonTypes;
-
 
 namespace Shodan.API.Types.Json
 {

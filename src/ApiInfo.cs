@@ -1,4 +1,4 @@
-﻿using Shodan.API.JsonTypes;
+﻿using Shodan.API.Types.Json;
 
 
 namespace Shodan.API

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-using Shodan.API.Types.Json;
 
-
-namespace Shodan.API.JsonTypes
+namespace Shodan.API.Types.Json
 {
   [DataContract]
   public class HostJson

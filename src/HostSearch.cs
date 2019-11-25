@@ -4,7 +4,7 @@ using System.Threading;
 
 using Shodan.API.Exceptions;
 using Shodan.API.Interfaces;
-using Shodan.API.JsonTypes;
+using Shodan.API.Types.Json;
 
 
 namespace Shodan.API

@@ -54,12 +54,12 @@ namespace Shodan.API
 
       catch (WebException ex)
       {
-        jsonSerializer = new DataContractJsonSerializer(typeof(JsonTypes.Error));
+        jsonSerializer = new DataContractJsonSerializer(typeof(Types.Json.Error));
 
         if (ex.Response != null)
         {
           objResponse = jsonSerializer.ReadObject(ex.Response.GetResponseStream());
-          throw new ShodanException((objResponse as JsonTypes.Error).Message);
+          throw new ShodanException((objResponse as Types.Json.Error).Message);
         }
 
         else

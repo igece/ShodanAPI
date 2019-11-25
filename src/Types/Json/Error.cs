@@ -1,7 +1,7 @@
 ﻿using System.Runtime.Serialization;
 
 
-namespace Shodan.API.JsonTypes
+namespace Shodan.API.Types.Json
 {
   [DataContract]
   public class Error
