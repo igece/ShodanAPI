@@ -87,11 +87,11 @@ namespace Shodan.API
             continue;
           }
 
-          Thread.Sleep(100);
+          Thread.Sleep(1000);
           continue;
         }
 
-        Thread.Sleep(100);
+        Thread.Sleep(1000);
 
       } while (currentPage++ < realMaxPages);
 
