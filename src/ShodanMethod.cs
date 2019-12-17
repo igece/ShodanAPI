@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
+using System.Threading;
 
 using Shodan.API.Exceptions;
 
@@ -37,39 +38,60 @@ namespace Shodan.API
       DataContractJsonSerializer jsonSerializer;
       object objResponse;
 
-      try
+      bool timeout;
+      int retries = 0;
+
+      do
       {
-        using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+        timeout = false;
+
+        try
         {
-          jsonSerializer = new DataContractJsonSerializer(typeof(T), new DataContractJsonSerializerSettings
+          using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
           {
-            DateTimeFormat = new DateTimeFormat("yyyy-MM-dd'T'HH:mm:ss.ffffff")
-          });
+            jsonSerializer = new DataContractJsonSerializer(typeof(T), new DataContractJsonSerializerSettings
+            {
+              DateTimeFormat = new DateTimeFormat("yyyy-MM-dd'T'HH:mm:ss.FFFFFF")
+            });
 
-          objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
-
-          return (objResponse as T);
+            objResponse = jsonSerializer.ReadObject(response.GetResponseStream());
+          }
         }
-      }
 
-      catch (WebException ex)
-      {
-        jsonSerializer = new DataContractJsonSerializer(typeof(Types.Json.Error));
-
-        if (ex.Response != null)
+        catch (WebException ex)
         {
-          objResponse = jsonSerializer.ReadObject(ex.Response.GetResponseStream());
-          throw new ShodanException((objResponse as Types.Json.Error).Message);
+          jsonSerializer = new DataContractJsonSerializer(typeof(Types.Json.Error));
+
+          if (ex.Response != null)
+          {
+            objResponse = jsonSerializer.ReadObject(ex.Response.GetResponseStream());
+
+            if (objResponse is Types.Json.Error shodanError)
+            {
+              if (shodanError.Message.StartsWith("The search request timed out") && retries++ < 5)
+              {
+                System.Diagnostics.Debug.WriteLine($"Request timed out, retrying... ({retries}/5)");
+
+                timeout = true;
+                Thread.Sleep(1000);
+                continue;
+              }
+              else
+                throw new ShodanException(shodanError.Message);
+            }
+          }
+
+          else
+            throw new ShodanException(ex.Message);
         }
 
-        else
-          throw new ShodanException(ex.Message);
-      }
+        catch (Exception)
+        {
+          throw;
+        }
+      } while (timeout);
 
-      catch (Exception)
-      {
-        throw;
-      }
+      return (objResponse as T);
     }
   }
 }

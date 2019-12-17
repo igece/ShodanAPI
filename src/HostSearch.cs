@@ -55,7 +55,7 @@ namespace Shodan.API
       HostSearchJson allResults = new HostSearchJson();
       List<HostJson> allHosts = new List<HostJson>();
 
-      int retries = 0;
+      //int retries = 0;
 
       do
       {
@@ -64,7 +64,7 @@ namespace Shodan.API
         try
         {
           HostSearchJson pageResults = base.Execute();
-          retries = 0;
+          //retries = 0;
 
           if (currentPage == 1)
           {
@@ -76,23 +76,23 @@ namespace Shodan.API
           }
 
           allHosts.AddRange(pageResults.Matches);
+          Thread.Sleep(1000);
         }
 
         catch (Exception)
         {
+          /*
           if (++retries == 3)
           {
             retries = 0;
             currentPage++;
             continue;
           }
-
+          currentPage++;
           Thread.Sleep(1000);
           continue;
+          */
         }
-
-        Thread.Sleep(1000);
-
       } while (currentPage++ < realMaxPages);
 
       allResults.Matches = allHosts.ToArray();
