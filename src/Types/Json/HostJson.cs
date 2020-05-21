@@ -40,6 +40,9 @@ namespace Shodan.API.Types.Json
     [DataMember(Name = "data")]
     public string Data { get; set; }
 
+    [DataMember(Name = "opts")]
+    public OptsJson Options { get; set; }
+
     [DataMember(Name = "port")]
     public int Port { get; set; }
 

@@ -61,6 +61,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShodanApi.cs" />
     <Compile Include="ShodanMethod.cs" />
+    <Compile Include="Types\Json\OptsJson.cs" />
+    <Compile Include="Types\Json\ScreenshotJson.cs" />
     <Compile Include="Types\Json\SmbJson.cs" />
     <Compile Include="Types\Json\SmbShareJson.cs" />
     <Compile Include="Types\Json\SmbFileJson.cs" />
