@@ -1,4 +1,6 @@
-﻿using Shodan.API.Exceptions;
+﻿using System.Threading.Tasks;
+
+using Shodan.API.Exceptions;
 using Shodan.API.Types.Json;
 
 
@@ -31,6 +33,21 @@ namespace Shodan.API
         RequestParams.Add("minify", Minify.Value.ToString().ToLowerInvariant());
 
       return base.Execute();
+    }
+
+
+    public override async Task<HostInfoJson> ExecuteAsync()
+    {
+      if (string.IsNullOrEmpty(IP))
+        throw new ShodanException("No IP specified.");
+
+      MethodUrl = $"shodan/host/{IP}";
+      RequestParams.Clear();
+
+      if (Minify.HasValue)
+        RequestParams.Add("minify", Minify.Value.ToString().ToLowerInvariant());
+
+      return await base.ExecuteAsync();
     }
   }
 }
