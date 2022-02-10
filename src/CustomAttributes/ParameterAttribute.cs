@@ -3,7 +3,7 @@
 
 namespace Shodan.API.CustomAttributes
 {
-  public class ParameterAttribute : Attribute
+  class ParameterAttribute : Attribute
   {
     public string Name { get; set; }
 

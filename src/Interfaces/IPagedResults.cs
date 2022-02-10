@@ -1,6 +1,6 @@
 ﻿namespace Shodan.API.Interfaces
 {
-  public interface IPagedResults<T> where T : class
+  interface IPagedResults<T> where T : class
   {
     T[] Matches { get; set; }
 
