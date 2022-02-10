@@ -1,4 +1,4 @@
-﻿namespace Shodan.API.Types.Responses
+﻿namespace Shodan.API.Interfaces
 {
   public interface IPagedResults<T> where T : class
   {
