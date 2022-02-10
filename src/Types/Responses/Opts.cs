@@ -3,9 +3,9 @@
 
 namespace Shodan.API.Types.Responses
 {
-  public class OptsJson
+  public class Opts
   {
     [JsonPropertyName("screenshot")]
-    public ScreenshotJson Screenshot { get; set; }
+    public Screenshot Screenshot { get; set; }
   }
 }

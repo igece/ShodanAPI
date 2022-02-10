@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Shodan.API.Exceptions;
-using Shodan.API.Types.Filters;
+using Shodan.API.Interfaces;
 using Shodan.API.Types.Responses;
 
 

@@ -3,7 +3,7 @@
 
 namespace Shodan.API.Types.Responses
 {
-  public class HostInfoJson
+  public class HostInfo
   {
     [JsonPropertyName("region_code")]
     public string RegionCode { get; set; }
@@ -39,6 +39,6 @@ namespace Shodan.API.Types.Responses
     public string ISP { get; set; }
 
     [JsonPropertyName("data")]
-    public HostJson[] Data { get; set; }
+    public Host[] Data { get; set; }
   }
 }

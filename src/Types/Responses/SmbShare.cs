@@ -3,7 +3,7 @@
 
 namespace Shodan.API.Types.Responses
 {
-  public class SmbShareJson
+  public class SmbShare
   {
     [JsonPropertyName("temporary")]
     public bool Temporary { get; set; }
@@ -21,6 +21,6 @@ namespace Shodan.API.Types.Responses
     public string Comments { get; set; }
 
     [JsonPropertyName("files")]
-    public SmbFileJson[] Files { get; set; }
+    public SmbFile[] Files { get; set; }
   }
 }

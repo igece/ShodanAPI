@@ -3,7 +3,7 @@
 
 namespace Shodan.API.Types.Responses
 {
-    public class LocationJson
+    public class Location
   {
     [JsonPropertyName("city")]
     public string City { get; set; }

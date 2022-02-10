@@ -7,9 +7,9 @@ namespace Shodan.API
 {
   public partial class ShodanClient
   {
-    public static Task<ApiInfoJson> ApiInfoAsync()
+    public static Task<ApiInfo> ApiInfoAsync()
     {
-      return MakeRequest<ApiInfoJson>(GetRequestBuilder("/api-info").ToString());
+      return MakeRequest<ApiInfo>(GetRequestBuilder("/api-info").ToString());
     }
   }
 }

@@ -3,7 +3,7 @@
 
 namespace Shodan.API.Types.Responses
 {
-  public class SmbFileJson
+  public class SmbFile
   {
     [JsonPropertyName("directory")]
     public bool IsDirectory { get; set; }

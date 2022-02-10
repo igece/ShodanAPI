@@ -3,8 +3,7 @@
 
 namespace Shodan.API.Types.Responses
 {
-
-  public class ApiInfoJson
+  public class ApiInfo
   {
     [JsonPropertyName("query_credits")]
     public ushort QueryCredits { get; set; }

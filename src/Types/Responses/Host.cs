@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace Shodan.API.Types.Responses
 {
-  public class HostJson
+  public class Host
   {
     [JsonPropertyName("os")]
     public string OS { get; set; }
@@ -25,7 +25,7 @@ namespace Shodan.API.Types.Responses
     public string[] Hostnames { get; set; }
 
     [JsonPropertyName("location")]
-    public LocationJson Location { get; set; }
+    public Location Location { get; set; }
 
     [JsonPropertyName("ip")]
     public uint IP { get; set; }
@@ -40,7 +40,7 @@ namespace Shodan.API.Types.Responses
     public string Data { get; set; }
 
     [JsonPropertyName("opts")]
-    public OptsJson Options { get; set; }
+    public Opts Options { get; set; }
 
     [JsonPropertyName("port")]
     public int Port { get; set; }
@@ -64,9 +64,9 @@ namespace Shodan.API.Types.Responses
     public string DeviceType { get; set; }
 
     [JsonPropertyName("http")]
-    public HttpJson HTTP { get; set; }
+    public Http HTTP { get; set; }
 
     [JsonPropertyName("smb")]
-    public SmbJson SMB { get; set; }
+    public Smb SMB { get; set; }
   }
 }

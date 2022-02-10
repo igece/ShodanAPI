@@ -9,7 +9,7 @@ namespace Shodan.API
 {
   public partial class ShodanClient
   {
-    public static Task<HostInfoJson> GetHostInfoAsync(string ip, bool? minify = null)
+    public static Task<HostInfo> GetHostInfoAsync(string ip, bool? minify = null)
     {
       if (ip == null)
         throw new ArgumentNullException(nameof(ip));
@@ -22,11 +22,11 @@ namespace Shodan.API
       if (minify != null)
         request.Append($"&minify={minify.ToString().ToLowerInvariant()}");
 
-      return MakeRequest<HostInfoJson>(request.ToString());
+      return MakeRequest<HostInfo>(request.ToString());
     }
 
 
-    public static Task<HostSearchJson> SearchHostsAsync(string query, SearchFilter filter = null, bool? minify = null, uint maxPages = 1)
+    public static Task<HostSearch> SearchHostsAsync(string query, SearchFilter filter = null, bool? minify = null, uint maxPages = 1)
     {
       var request = GetRequestBuilder("/shodan/host/search");
 
@@ -39,7 +39,7 @@ namespace Shodan.API
       if (minify != null)
         request.Append($"&minify={minify.ToString().ToLowerInvariant()}");
 
-      return MakeMultipageRequest<HostSearchJson, HostJson>(request.ToString(), maxPages);
+      return MakeMultipageRequest<HostSearch, Host>(request.ToString(), maxPages);
     }
   }
 }

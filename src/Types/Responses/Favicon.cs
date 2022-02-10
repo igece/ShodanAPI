@@ -3,7 +3,7 @@
 
 namespace Shodan.API.Types.Responses
 {
-  public class FaviconJson
+  public class Favicon
   {
     [JsonPropertyName("data")]
     public string Data { get; set; }

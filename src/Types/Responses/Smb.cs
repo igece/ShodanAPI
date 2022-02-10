@@ -3,7 +3,7 @@
 
 namespace Shodan.API.Types.Responses
 {
-  public class SmbJson
+  public class Smb
   {
     [JsonPropertyName("smb_version")]
     public int Version { get; set; }
@@ -18,7 +18,7 @@ namespace Shodan.API.Types.Responses
     public string Software { get; set; }
 
     [JsonPropertyName("shares")]
-    public SmbShareJson[] Shares { get; set; }
+    public SmbShare[] Shares { get; set; }
   }
 
 }

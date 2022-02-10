@@ -1,12 +1,14 @@
 ﻿using System.Text.Json.Serialization;
 
+using Shodan.API.Interfaces;
+
 
 namespace Shodan.API.Types.Responses
 {
-  public class HostSearchJson : IPagedResults<HostJson>
+  public class HostSearch : IPagedResults<Host>
   {
     [JsonPropertyName("matches")]
-    public HostJson[] Matches { get; set; }
+    public Host[] Matches { get; set; }
 
     [JsonPropertyName("total")]
     public uint Total { get; set; }

@@ -3,7 +3,7 @@
 
 namespace Shodan.API.Types.Responses
 {
-  public class ScreenshotJson
+  public class Screenshot
   {
     [JsonPropertyName("data")]
     public string Data { get; set; }
