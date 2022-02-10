@@ -13,53 +13,13 @@ using Shodan.API.Types.Responses;
 
 namespace Shodan.API
 {
-  public class Shodan
+  public partial class ShodanClient
   {
     public static string ApiKey { get; set; }
 
     public static string Url { get; set; } = "https://api.shodan.io";
 
     public static uint ResultsPerPage { get; set; } = 100;
-
-
-    public static Task<ApiInfoJson> ApiInfoAsync()
-    {
-      return MakeRequest<ApiInfoJson>(GetRequestBuilder("/api-info").ToString());
-    }
-
-
-    public static Task<HostInfoJson> GetHostInfoAsync(string ip, bool? minify = null)
-    {
-      if (ip == null)
-        throw new ArgumentNullException(nameof(ip));
-
-      if (ip.Length == 0)
-        throw new ArgumentException(nameof(ip));
-
-      var request = GetRequestBuilder($"/shodan/host/{ip}");
-
-      if (minify != null)
-        request.Append($"&minify={minify.ToString().ToLowerInvariant()}");
-
-      return MakeRequest<HostInfoJson>(request.ToString());
-    }
-
-
-    public static Task<HostSearchJson> SearchHostsAsync(string query, SearchFilter filter = null, bool? minify = null, uint maxPages = 1)
-    {
-      var request = GetRequestBuilder("/shodan/host/search");
-
-      if (!string.IsNullOrEmpty(query))
-        request.Append($"&query={query}");
-
-      if (filter != null)
-        request.Append($"&{filter}");
-
-      if (minify != null)
-        request.Append($"&minify={minify.ToString().ToLowerInvariant()}");
-
-      return MakeMultipageRequest<HostSearchJson, HostJson>(request.ToString(), maxPages);
-    }
 
 
     private static StringBuilder GetRequestBuilder(string methodPath)
