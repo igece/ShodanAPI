@@ -1,45 +1,44 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Text.Json.Serialization;
 
 
-namespace Shodan.API.Types.Json
+namespace Shodan.API.Types.Responses
 {
-  [DataContract]
   public class HostInfoJson
   {
-    [DataMember(Name = "region_code")]
+    [JsonPropertyName("region_code")]
     public string RegionCode { get; set; }
 
-    [DataMember(Name = "country_code")]
+    [JsonPropertyName("country_code")]
     public string CountryCode { get; set; }
 
-    [DataMember(Name = "dma_code")]
+    [JsonPropertyName("dma_code")]
     public string DmaCode { get; set; }
 
-    [DataMember(Name = "city")]
+    [JsonPropertyName("city")]
     public string City { get; set; }
 
-    [DataMember(Name = "country_code3")]
+    [JsonPropertyName("country_code3")]
     public string CountryCode3 { get; set; }
 
-    [DataMember(Name = "country_name")]
+    [JsonPropertyName("country_name")]
     public string CountryName { get; set; }
 
-    [DataMember(Name = "latitude")]
+    [JsonPropertyName("latitude")]
     public double Latitude { get; set; }
 
-    [DataMember(Name = "longitude")]
+    [JsonPropertyName("longitude")]
     public double Longitude { get; set; }
 
-    [DataMember(Name = "ip")]
+    [JsonPropertyName("ip")]
     public uint IP { get; set; }
 
-    [DataMember(Name = "ip_str")]
+    [JsonPropertyName("ip_str")]
     public string IPString { get; set; }
 
-    [DataMember(Name = "isp")]
+    [JsonPropertyName("isp")]
     public string ISP { get; set; }
 
-    [DataMember(Name = "data")]
+    [JsonPropertyName("data")]
     public HostJson[] Data { get; set; }
   }
 }

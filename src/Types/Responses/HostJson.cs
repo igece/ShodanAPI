@@ -1,73 +1,72 @@
 ﻿using System;
-using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
 
 
-namespace Shodan.API.Types.Json
+namespace Shodan.API.Types.Responses
 {
-  [DataContract]
   public class HostJson
   {
-    [DataMember(Name = "os")]
+    [JsonPropertyName("os")]
     public string OS { get; set; }
 
-    [DataMember(Name = "server")]
+    [JsonPropertyName("server")]
     public string Server { get; set; }
 
-    [DataMember(Name = "timestamp")]
+    [JsonPropertyName("timestamp")]
     public DateTime? TimeStamp { get; set; }
 
-    [DataMember(Name = "isp")]
+    [JsonPropertyName("isp")]
     public string ISP { get; set; }
 
-    [DataMember(Name = "asn")]
+    [JsonPropertyName("asn")]
     public string ASN { get; set; }
 
-    [DataMember(Name = "hostnames")]
+    [JsonPropertyName("hostnames")]
     public string[] Hostnames { get; set; }
 
-    [DataMember(Name = "location")]
+    [JsonPropertyName("location")]
     public LocationJson Location { get; set; }
 
-    [DataMember(Name = "ip")]
+    [JsonPropertyName("ip")]
     public uint IP { get; set; }
     
-    [DataMember(Name = "domains")]
+    [JsonPropertyName("domains")]
     public string[] Domains { get; set; }
 
-    [DataMember(Name = "org")]
+    [JsonPropertyName("org")]
     public string Organization { get; set; }
 
-    [DataMember(Name = "data")]
+    [JsonPropertyName("data")]
     public string Data { get; set; }
 
-    [DataMember(Name = "opts")]
+    [JsonPropertyName("opts")]
     public OptsJson Options { get; set; }
 
-    [DataMember(Name = "port")]
+    [JsonPropertyName("port")]
     public int Port { get; set; }
 
-    [DataMember(Name = "ip_str")]
+    [JsonPropertyName("ip_str")]
     public string IPString { get; set; }
 
-    [DataMember(Name = "product")]
+    [JsonPropertyName("product")]
     public string Product { get; set; }
 
-    [DataMember(Name = "version")]
+    [JsonPropertyName("version")]
     public string Version { get; set; }
 
-    [DataMember(Name = "hash")]
+    [JsonPropertyName("hash")]
     public long Hash { get; set; }
 
-    [DataMember(Name = "transport")]
+    [JsonPropertyName("transport")]
     public string Transport { get; set; }
 
-    [DataMember(Name = "devicetype")]
+    [JsonPropertyName("devicetype")]
     public string DeviceType { get; set; }
 
-    [DataMember(Name = "http")]
+    [JsonPropertyName("http")]
     public HttpJson HTTP { get; set; }
 
-    [DataMember(Name = "smb")]
+    [JsonPropertyName("smb")]
     public SmbJson SMB { get; set; }
   }
 }
