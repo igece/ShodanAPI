@@ -12,9 +12,9 @@
     <Copyright>Copyright (c) 2020 Israel Gómez de Celis González</Copyright>
     <PackageTags>shodan;api</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>2.1.1</AssemblyVersion>
-    <Version>2.1.1</Version>
-    <FileVersion>2.1.1</FileVersion>
+    <AssemblyVersion>2.1.2</AssemblyVersion>
+    <Version>2.1.2</Version>
+    <FileVersion>2.1.2</FileVersion>
     <Description>C# implementation of the Shodan API.</Description>
   </PropertyGroup>
 

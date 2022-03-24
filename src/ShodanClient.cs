@@ -33,51 +33,53 @@ namespace Shodan.API
 
         private static async Task<T> MakeRequest<T>(string request)
         {
-            var httpClient = new HttpClient();
-            HttpResponseMessage response = null;
-            bool timeout;
-            var retries = 0;
-
-            try
+            using (var httpClient = new HttpClient())
             {
-                do
+                HttpResponseMessage response = null;
+                bool timeout;
+                var retries = 0;
+
+                try
                 {
-                    timeout = false;
-                    response = await httpClient.GetAsync(request);
-
-                    if (response.IsSuccessStatusCode)
-                        return await response.Content.ReadFromJsonAsync<T>();
-
-                    if (response.StatusCode == HttpStatusCode.RequestTimeout && retries++ < 5)
+                    do
                     {
-                        System.Diagnostics.Debug.WriteLine($"Request timed out, retrying... ({retries}/5)");
-                        timeout = true;
+                        timeout = false;
+                        response = await httpClient.GetAsync(request);
 
-                        await Task.Delay(1000);
-                        continue;
-                    }
+                        if (response.IsSuccessStatusCode)
+                            return await response.Content.ReadFromJsonAsync<T>();
 
-                    try
-                    {
-                        var shodanError = await response.Content.ReadFromJsonAsync<Error>();
+                        if (response.StatusCode == HttpStatusCode.RequestTimeout && retries++ < 5)
+                        {
+                            System.Diagnostics.Debug.WriteLine($"Request timed out, retrying... ({retries}/5)");
+                            timeout = true;
 
-                        if (shodanError != null)
-                            throw new ShodanException(shodanError.Message);
-                    }
+                            await Task.Delay(1000);
+                            continue;
+                        }
 
-                    catch (Exception)
-                    {
-                        throw new HttpRequestException($"{(int)response.StatusCode} {response.ReasonPhrase}");
-                    }
+                        try
+                        {
+                            var shodanError = await response.Content.ReadFromJsonAsync<Error>();
 
-                } while (timeout);
+                            if (shodanError != null)
+                                throw new ShodanException(shodanError.Message);
+                        }
 
-                throw new HttpRequestException($"{response.StatusCode} {response.ReasonPhrase}");
-            }
+                        catch (Exception)
+                        {
+                            throw new HttpRequestException($"{(int)response.StatusCode} {response.ReasonPhrase}");
+                        }
 
-            finally
-            {
-                response?.Dispose();
+                    } while (timeout);
+
+                    throw new HttpRequestException($"{response.StatusCode} {response.ReasonPhrase}");
+                }
+
+                finally
+                {
+                    response?.Dispose();
+                }
             }
         }
 
