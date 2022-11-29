@@ -6,6 +6,8 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Threading.Tasks;
 
+using Arnath.StandaloneHttpClientFactory;
+
 using Shodan.API.Exceptions;
 using Shodan.API.Interfaces;
 using Shodan.API.Types.Responses;
@@ -22,6 +24,15 @@ namespace Shodan.API
         public static uint ResultsPerPage { get; set; } = 100;
 
 
+        private static readonly StandaloneHttpClientFactory _httpClientFactory = new StandaloneHttpClientFactory();
+
+
+        public static void Dispose()
+        {
+            _httpClientFactory.Dispose();
+        }
+
+
         private static StringBuilder GetRequestBuilder(string methodPath)
         {
             if (string.IsNullOrEmpty(ApiKey))
@@ -33,7 +44,7 @@ namespace Shodan.API
 
         private static async Task<T> MakeRequest<T>(string request)
         {
-            using (var httpClient = new HttpClient())
+            using (var httpClient = _httpClientFactory.CreateClient())
             {
                 HttpResponseMessage response = null;
                 bool timeout;

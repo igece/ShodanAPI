@@ -19,6 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Arnath.StandaloneHttpClientFactory" Version="1.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.2" />
   </ItemGroup>
