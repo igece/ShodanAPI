@@ -3,15 +3,18 @@
 
 namespace Shodan.API.Types.Responses
 {
-  public class Screenshot
-  {
-    [JsonPropertyName("data")]
-    public string Data { get; set; }
+    public class Screenshot
+    {
+        [JsonPropertyName("data")]
+        public string Data { get; set; }
 
-    [JsonPropertyName("labels")]
-    public string[] Labels { get; set; }
+        [JsonPropertyName("labels")]
+        public string[] Labels { get; set; }
 
-    [JsonPropertyName("mime")]
-    public string MIME { get; set; }
-  }
+        [JsonPropertyName("mime")]
+        public string MIME { get; set; }
+
+        [JsonPropertyName("hash")]
+        public long Hash{ get; set; }
+    }
 }
