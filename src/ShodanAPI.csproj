@@ -12,16 +12,16 @@
     <Copyright>Copyright (c) 2020 Israel Gómez de Celis González</Copyright>
     <PackageTags>shodan;api</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <AssemblyVersion>2.1.4</AssemblyVersion>
-    <Version>2.1.4</Version>
-    <FileVersion>2.1.4</FileVersion>
+    <AssemblyVersion>2.1.5</AssemblyVersion>
+    <Version>2.1.5</Version>
+    <FileVersion>2.1.5</FileVersion>
     <Description>C# implementation of the Shodan API.</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Arnath.StandaloneHttpClientFactory" Version="1.0.0" />
     <PackageReference Include="System.Net.Http.Json" Version="8.0.0" />
-    <PackageReference Include="System.Text.Json" Version="8.0.0" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
  
   <ItemGroup>

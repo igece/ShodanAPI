@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 using Arnath.StandaloneHttpClientFactory;
@@ -25,6 +26,8 @@ namespace Shodan.API
 
 
         private static readonly StandaloneHttpClientFactory _httpClientFactory = new StandaloneHttpClientFactory();
+
+        private static readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { DefaultBufferSize = 16 * 1024 };
 
 
         public static void Dispose()
@@ -58,7 +61,10 @@ namespace Shodan.API
                         response = await httpClient.GetAsync(request);
 
                         if (response.IsSuccessStatusCode)
-                            return await response.Content.ReadFromJsonAsync<T>();
+                        {
+                            using (var stream = await response.Content.ReadAsStreamAsync())
+                                return await JsonSerializer.DeserializeAsync<T>(stream, _serializerOptions);
+                        }
 
                         if (response.StatusCode == HttpStatusCode.RequestTimeout && retries++ < 5)
                         {
