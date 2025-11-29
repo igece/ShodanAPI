@@ -1,7 +1,7 @@
 ﻿using Shodan.API;
 
 
-ShodanClient.ApiKey = "9qPtvTNamTCjl6QIz5D8yCkZn9PIZ9l2";
+ShodanClient.ApiKey = "";
 
 while (true)
 {
