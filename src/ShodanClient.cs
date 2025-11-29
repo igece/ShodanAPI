@@ -29,6 +29,8 @@ namespace Shodan.API
 
         private static readonly JsonSerializerOptions _serializerOptions = new JsonSerializerOptions { DefaultBufferSize = 16 * 1024 };
 
+        private static bool _timeoutAdjusted = false;
+
 
         public static void Dispose()
         {
@@ -48,7 +50,13 @@ namespace Shodan.API
         private static async Task<T> MakeRequest<T>(string request)
         {
             using (var httpClient = _httpClientFactory.CreateClient())
-            {
+            {               
+                if (!_timeoutAdjusted)
+                {
+                    httpClient.Timeout = TimeSpan.FromSeconds(300);
+                    _timeoutAdjusted = true;
+                }
+
                 HttpResponseMessage response = null;
                 bool timeout;
                 var retries = 0;
@@ -57,8 +65,8 @@ namespace Shodan.API
                 {
                     do
                     {
-                        timeout = false;
-                        response = await httpClient.GetAsync(request);
+                        timeout = false;                        
+                        response = await httpClient.GetAsync(request, HttpCompletionOption.ResponseHeadersRead);
 
                         if (response.IsSuccessStatusCode)
                         {
